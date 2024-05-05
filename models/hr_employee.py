@@ -20,13 +20,9 @@ class SdSnippetsBirthDays(models.Model):
     def get_birth_dates(self):
         context = self.env.context
         month_day = []
-
         today = datetime.now(pytz.timezone(context.get('tz', 'Asia/Tehran')))
         days = list([today + timedelta(days=rec - 1) for rec in range(4)])
         month_day = list([(rec.month, rec.day) for rec in days])
-        # records = self.search([('birthday', '>', today - timedelta(days=3)),
-        #                        ('birthday', '<', today + timedelta(days=3)), ],
-        #                       order='birthday desc')
         records = self.search([('birthday', '!=', False)], order='birthday desc')
 
         data = list([{'id': rec.id,
@@ -37,35 +33,18 @@ class SdSnippetsBirthDays(models.Model):
                       } for rec in records if rec.birthday and (rec.birthday.month, rec.birthday.day) in month_day
                      ])
         data = sorted(data, key=lambda x: (x['month'], x['day'],))
-        # print(f'\n===============\n')
-        #
-        # for r in records:
-        #     print(f'   {r.name}   {r.birthday}')
-        #
-        # print(f'')
-        #
-        # for r in sorted(records, key=lambda x : (x['month'], x['day'],)):
-        #     print(f'   {r.name}   {r.birthday}')
-        #
-        # print(f'')
-        #
-        # for d in data:
-        #     print(f'   {d}')
 
         return json.dumps({'data': data})
-
 
 
     def birthdate_converter(self, date_time, lang):
         if lang == 'fa_IR':
             date_time = jdatetime.datetime.fromgregorian(datetime=date_time)
             month_name = [rec for rec in self.months if rec[0] == date_time.strftime("%m")][0]
-            # print(f'\n------------------------- \n {month_name}  {date_time.strftime("%d")}')
             date_time = {'date': f'{month_name[1]} {date_time.strftime("%d")}',
                          'month': date_time.month,
                          'day': date_time.day,
                          }
-
         else:
             date_time = {'date': date_time.strftime("%M %d"),
                          'month': date_time.month,

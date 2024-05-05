@@ -8,7 +8,7 @@
 <!--            <div class="text-center h3">-->
 <!--                Happy Birth Day-->
 <!--            </div>-->
-            <div class="container s_allow_columns my-5 ">
+            <div class="container s_allow_columns my-1 my-md-5 ">
                 <div class="h3">Birth Days would be here</div>
             </div>
         </section>

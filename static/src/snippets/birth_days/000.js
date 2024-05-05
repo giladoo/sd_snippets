@@ -37,20 +37,32 @@ publicWidget.registry.SdBirthDays = publicWidget.Widget.extend({
         let data_lines = ''
         data['data'].forEach(data_rec => {
         data_lines += `
-        <div class="col bg-warning-light rounded-circle py-3 mx-1 text-center">
-            <div class="img_div rounded  mx-auto my-2 p-1 "
-                style="background-image: url(/employee/image?model=hr.employee.public&amp;id=${data_rec['id']}&amp;field=avatar_128)"></div>
-            <div class="h6 mb-2">
-                ${data_rec['name']}
+            <div class="card text-center mx-auto my-2 shadow" style="width:150px">
+                <img class="card-img-top"
+                src="/employee/image?model=hr.employee.public&amp;id=${data_rec['id']}&amp;field=avatar_128"
+                style="height: 180px;"
+                alt="Card image">
+                <div class="card-body">
+                  <h5 class="card-title">${data_rec['name']}</h4>
+                  <p class="card-text"> ${data_rec['birthday']}</p>
+                </div>
             </div>
-            <div class="">
-                ${data_rec['birthday']}
-            </div>
-        </div>
         `
+//        data_lines += `
+//        <div class="col bg-warning-light rounded-circle py-3 mx-1 text-center">
+//            <div class="img_div rounded  mx-auto my-2 p-1 "
+//                style="background-image: url(/employee/image?model=hr.employee.public&amp;id=${data_rec['id']}&amp;field=avatar_128)"></div>
+//            <div class="h6 mb-2">
+//                ${data_rec['name']}
+//            </div>
+//            <div class="">
+//                ${data_rec['birthday']}
+//            </div>
+//        </div>
+//        `
         })
         this.el.querySelector('.s_allow_columns').innerHTML = `
-        <div class="row">
+        <div class="row container mx-auto">
             ${data_lines}
         </div>
         `;

@@ -24,10 +24,11 @@ class SdSnippetsComments(models.Model):
     # website = fields.Many2one('')
 
     def get_updates(self):
+        lang = self.env.context.get('lang', 'en_US')
         records = self.search([('rec_date', '<=', date.today()), ('published', '=', True)],
                               order='rec_date desc', limit=3)
         data = list([{'title': rec.title,
-                      'date': rec.rec_date.strftime('%Y/%m/%d'),
+                      'date': self.date_converter(rec.rec_date, lang),
                       'content': rec.content,
                       } for rec in records])
         return json.dumps({'data': data})
@@ -35,3 +36,10 @@ class SdSnippetsComments(models.Model):
     def toggle_publish(self):
         for rec in self:
             rec.published = False if rec.published else True
+
+    def date_converter(self, date_time, lang):
+        if lang == 'fa_IR':
+            date_time = (jdatetime.datetime.fromgregorian(datetime=date_time)).strftime("%Y/%m/%d")
+        else:
+            date_time = date_time.strftime("%Y-%m-%d")
+        return date_time

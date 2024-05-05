@@ -37,11 +37,18 @@ publicWidget.registry.SdComments = publicWidget.Widget.extend({
         comments['data'].forEach(comment => {
         comment_lines += `
         <div class="bg-white">
-            <div class="h4 mx-2">${comment['title']}
+            <div class="border rounded shadow p-1 p-md-4 my-4 ">
+                <div class="h5 mx-2 mt-1">
+                    ${comment['title']}
+                </div>
+                <div class="small mx-1 mx-md-3">
+                    ${comment['date']}
+                </div>
+                <div class="border-bottom border-gray mx-1 mx-md-3 mb-3"></div>
+                <div class="mx-1 mx-md-4">
+                    ${comment['content']}
+                </div>
             </div>
-            <div class="mx-5">${comment['content']}
-            </div>
-            <div class="border-bottom mx-5 mb-5"></div>
         </div>
         `
         })
