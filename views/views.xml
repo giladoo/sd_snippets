@@ -51,7 +51,7 @@
             <field name="view_mode">tree,form</field>
     </record>
 
-        <menuitem name="Information"
+        <menuitem name="Internal News"
                   id="sd_snippets.comments"
                   parent="website.menu_website_configuration"
                 action="sd_snippets.website_comments"/>
