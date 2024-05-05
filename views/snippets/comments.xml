@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="comments_section" name="Comments">
+        <section class="pt40 pb40 sd_snippets_comments bg-white" data-vcss="001">
+            <div class="container s_allow_columns ">
+                <div class="h3">Comments would be here</div>
+            </div>
+        </section>
+    </template>
+
+</odoo>

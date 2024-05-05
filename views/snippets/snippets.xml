@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="my_snippets" inherit_id="website.snippets" name="My Snippets">
+    <xpath expr="//div[@id='snippet_structure']" position="before">
+                <div class="o_panel_header">SD Structure</div>
+                <div class="o_panel_body">
+                    <t t-snippet="sd_snippets.comments_section" t-thumbnail="/sd_snippets/static/src/img/snippets_thumbs/s_banner.svg">
+                        <keywords>comments, news</keywords>
+                    </t>
+                    <t t-snippet="sd_snippets.birth_day_section" t-thumbnail="/sd_snippets/static/src/img/snippets_thumbs/s_banner.svg">
+                        <keywords>birth, day</keywords>
+                    </t>
+                </div>
+
+    </xpath>
+
+</template>
+
+</odoo>

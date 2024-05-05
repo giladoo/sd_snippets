@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="birth_day_section" name="Birth Days">
+        <section class="pt40 pb40 sd_snippets_birth_days bg-white" data-vcss="002"
+                    data-oe-shape-data="{'shape':'web_editor/Floats/03','flip':[]}">
+
+<!--            <div class="text-center h3">-->
+<!--                Happy Birth Day-->
+<!--            </div>-->
+            <div class="container s_allow_columns my-5 ">
+                <div class="h3">Birth Days would be here</div>
+            </div>
+        </section>
+    </template>
+
+</odoo>

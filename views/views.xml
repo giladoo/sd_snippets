@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="website_comments_list" model="ir.ui.view">
+        <field name="name">Comments</field>
+        <field name="model">sd_snippets.comments</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="title"/>
+                <field name="rec_date"/>
+<!--                <field name="content"/>-->
+                <field name="published" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="website_comments_form" model="ir.ui.view">
+        <field name="name">Comments</field>
+        <field name="model">sd_snippets.comments</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                        <div name="button_box" class="oe_button_box">
+
+<!--                            <button class="oe_stat_button" type="object" name="toggle_publish" icon="fa-">-->
+                            <button class="oe_stat_button  mx-3"  icon="fa-" string="Published" name="toggle_publish" type="object">
+                                            <field name="published" string="Published" widget="boolean_toggle" class="oe_stat_button"/>
+<!--                                <field string="Published" name="published" widget="statinfo"/>-->
+                            </button>
+
+                        </div>
+                    <group>
+                        <group>
+                            <field name="title"/>
+
+                        </group>
+                        <group>
+                            <field name="rec_date"/>
+
+                        </group>
+                    </group>
+                            <field name="content"/>
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+
+    <record id="website_comments" model="ir.actions.act_window">
+            <field name="name">Comments</field>
+            <field name="res_model">sd_snippets.comments</field>
+            <field name="view_mode">tree,form</field>
+    </record>
+
+        <menuitem name="Information"
+                  id="sd_snippets.comments"
+                  parent="website.menu_website_configuration"
+                action="sd_snippets.website_comments"/>
+</odoo>

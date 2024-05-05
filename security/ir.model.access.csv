@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sd_snippets_comments_publisher,sd_snippets.comments,model_sd_snippets_comments,website.group_website_publisher,1,1,1,0
+access_sd_snippets_comments_designer,sd_snippets.comments,model_sd_snippets_comments,website.group_website_designer,1,1,1,1
+access_sd_snippets_comments_admin,sd_snippets.comments,model_sd_snippets_comments,base.group_system,1,1,1,1
+access_sd_snippets_comments_user,sd_snippets.comments,model_sd_snippets_comments,base.group_user,1,0,0,0
+
+
