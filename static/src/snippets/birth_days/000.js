@@ -10,21 +10,21 @@ publicWidget.registry.SdBirthDays = publicWidget.Widget.extend({
      * @override
      */
     start() {
-        console.log('sd_snippets_birth_days', this.el, this.el.querySelector('.s_allow_columns'))
+//        console.log('sd_snippets_birth_days', this.el, this.el.querySelector('.s_allow_columns'))
         // todo: This way the conditional view of the snippet is not working.
         //  I need to change it based on conditional view.
         //  I there is no user_id check, the browser will show an warning of session.
                 this.el.querySelector('.s_allow_columns').innerHTML = '';
 
         if(session.user_id){
-                console.log('sd_snippets_birth_days', session.user_id)
+//                console.log('sd_snippets_birth_days', session.user_id)
 //                this.el.querySelector('.s_allow_columns').innerHTML = 'Birth';
 
             this._getData()
                 .then(data => data ? this._loadData(data) : '');
 
         }else{
-                console.log('sd_snippets_birth_days else', session.user_id)
+//                console.log('sd_snippets_birth_days else', session.user_id)
         this.el.classList.remove('pt40')
         this.el.classList.remove('pb40')
         }

@@ -23,7 +23,7 @@ class SdSnippetsBirthDays(models.Model):
         today = datetime.now(pytz.timezone(context.get('tz', 'Asia/Tehran')))
         days = list([today + timedelta(days=rec - 1) for rec in range(4)])
         month_day = list([(rec.month, rec.day) for rec in days])
-        records = self.search([('birthday', '!=', False)], order='birthday desc')
+        records = self.sudo().search([('birthday', '!=', False)], order='birthday desc')
 
         data = list([{'id': rec.id,
                       'name': rec.name,
