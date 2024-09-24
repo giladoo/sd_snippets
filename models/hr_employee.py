@@ -2,7 +2,7 @@
 import json
 
 from odoo import models, fields, api, Command
-from colorama import Fore
+# from colorama import Fore
 import os, fnmatch
 import base64
 import pandas as pd
