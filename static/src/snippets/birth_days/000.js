@@ -29,7 +29,7 @@ publicWidget.registry.SdBirthDays = publicWidget.Widget.extend({
         //  I there is no user_id check, the browser will show an warning of session.
 //        console.log('birthday snippet:', this)
 //        if (session.user_id == false) return
-        this.el.querySelector('.s_allow_columns') && this.el.querySelector('.s_allow_columns').innerHTML = '';
+//        this.el.querySelector('.s_allow_columns') && this.el.querySelector('.s_allow_columns').innerHTML = '';
         this._getData()
             .then(data => {
                 if(data.data && data.data.length){
