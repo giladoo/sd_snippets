@@ -1,11 +1,14 @@
 /** @odoo-module **/
 
-import publicWidget from 'web.public.widget';
-import session from 'web.session';
+import { session } from "@web/session";
+import publicWidget from "@web/legacy/js/public/public_widget";
 
 publicWidget.registry.SdComments = publicWidget.Widget.extend({
     selector: '.sd_snippets_comments',
-
+    init: function () {
+        this._super.apply(this, arguments);
+        this.rpc = this.bindService("rpc");
+    },
     /**
      * @override
      */
@@ -14,24 +17,24 @@ publicWidget.registry.SdComments = publicWidget.Widget.extend({
         // todo: This way the conditional view of the snippet is not working.
         //  I need to change it based on conditional view.
         //  I there is no user_id check, the browser will show an warning of session.
-                this.el.querySelector('.s_allow_columns').innerHTML = '';
+        this.el.querySelector('.comment_data').innerHTML = '';
+        this._getComments()
+            .then(data => {
+                if(data.data && data.data.length){
+                    this._loadComments(data)
+                    this.el.querySelector('.comment_header').classList.remove('d-none')
+                    this.el.querySelector('.comment_data').classList.remove('d-none')
+                } else{
+                    this.el.classList.remove('pt40')
+                    this.el.classList.remove('pb40')
+                }
+            });
 
-        if(session.user_id){
-//                console.log('sd_snippets_comments', session.user_id)
-
-            this._getComments()
-                .then(comments => comments ? this._loadComments(comments) : '');
-
-        }else{
-//                console.log('sd_snippets_comments else', session.user_id)
-        this.el.classList.remove('pt40')
-        this.el.classList.remove('pb40')
-        }
         return this._super(...arguments);
 
     },
     _loadComments(comments){
-//        console.log('_loadComments:', comments, )
+        console.log('_loadComments:', comments, )
 //               this.el.querySelector('.s_allow_columns').innerHTML = '';
         let comment_lines = ''
         comments['data'].forEach(comment => {
@@ -52,20 +55,18 @@ publicWidget.registry.SdComments = publicWidget.Widget.extend({
         </div>
         `
         })
-        this.el.querySelector('.s_allow_columns').innerHTML = `
-        <div class="bg-white">
-            ${comment_lines}
-        </div>
-        `;
+            this.el.querySelector('.comment_data').innerHTML = `
+            <div class="bg-white">
+                ${comment_lines}
+            </div>
+            `;
+
+
 
     },
     async _getComments(){
         // todo: It can be replaced by route rpc. Check how to tack effect of conditional view on snippet options.
-        return this._rpc({
-            model: "sd_snippets.comments",
-            method: "get_updates",
-            args: [[]],
-        })
+        return this.rpc('/sd_snippets/snippet/comments')
         .then(data => JSON.parse(data))
         .then(data => data)
         .catch(er => false);

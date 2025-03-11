@@ -52,7 +52,8 @@
     </record>
 
         <menuitem name="Internal News"
-                  id="sd_snippets.comments"
-                  parent="website.menu_website_configuration"
+                  id="comments"
+                  sequence="302"
+                  parent="website.menu_site"
                 action="sd_snippets.website_comments"/>
 </odoo>

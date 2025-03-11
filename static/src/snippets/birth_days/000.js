@@ -1,11 +1,24 @@
 /** @odoo-module **/
-
-import publicWidget from 'web.public.widget';
-import session from 'web.session';
+import { session } from "@web/session";
+import publicWidget from "@web/legacy/js/public/public_widget";
 
 publicWidget.registry.SdBirthDays = publicWidget.Widget.extend({
     selector: '.sd_snippets_birth_days',
-
+    init: function () {
+        this._super.apply(this, arguments);
+        this.rpc = this.bindService("rpc");
+    },
+//    willStart(){
+//        const _super = this._super.bind(this);
+//
+//            console.log('birthday onWillStart:', session)
+//            if(session.user_id == false){
+//            console.log('birthday onWillStart:', this)
+//                this.el.innerHTML = ''
+//            }
+//
+//        return _super(...arguments)
+//    },
     /**
      * @override
      */
@@ -14,20 +27,21 @@ publicWidget.registry.SdBirthDays = publicWidget.Widget.extend({
         // todo: This way the conditional view of the snippet is not working.
         //  I need to change it based on conditional view.
         //  I there is no user_id check, the browser will show an warning of session.
-                this.el.querySelector('.s_allow_columns').innerHTML = '';
+//        console.log('birthday snippet:', this)
+//        if (session.user_id == false) return
+        this.el.querySelector('.s_allow_columns') && this.el.querySelector('.s_allow_columns').innerHTML = '';
+        this._getData()
+            .then(data => {
+                if(data.data && data.data.length){
+                    this._loadData(data)
+                    this.el.querySelector('.birthday_header').classList.remove('d-none')
+                    this.el.querySelector('.s_allow_columns').classList.remove('d-none')
+                } else{
+//                    this.el.classList.remove('pt40')
+//                    this.el.classList.remove('pb40')
+                }
+            });
 
-        if(session.user_id){
-//                console.log('sd_snippets_birth_days', session.user_id)
-//                this.el.querySelector('.s_allow_columns').innerHTML = 'Birth';
-
-            this._getData()
-                .then(data => data ? this._loadData(data) : '');
-
-        }else{
-//                console.log('sd_snippets_birth_days else', session.user_id)
-        this.el.classList.remove('pt40')
-        this.el.classList.remove('pb40')
-        }
         return this._super(...arguments);
 
     },
@@ -35,12 +49,15 @@ publicWidget.registry.SdBirthDays = publicWidget.Widget.extend({
 //        console.log('sd_snippets_birth_days load:', data, )
 //               this.el.querySelector('.s_allow_columns').innerHTML = '';
         let data_lines = ''
+        let birthDayEl = this.el.querySelector('.birthday_data')
+        birthDayEl.innerHTML = ''
         data['data'].forEach(data_rec => {
+//                src="/employee/image?model=hr.employee.public&amp;id=${data_rec['id']}&amp;field=avatar_128"
         data_lines += `
-            <div class="card text-center mx-auto my-2 shadow" style="width:150px">
+            <div class="card text-center mx-auto my-2 py-3 shadow" style="width:150px">
                 <img class="card-img-top"
-                src="/employee/image?model=hr.employee.public&amp;id=${data_rec['id']}&amp;field=avatar_128"
-                style="height: 180px;"
+                src="/website/image/hr.employee/${data_rec['id']}/avatar_256"
+                style="height: 120px;"
                 alt="Card image">
                 <div class="card-body">
                   <h5 class="card-title">${data_rec['name']}</h4>
@@ -61,7 +78,7 @@ publicWidget.registry.SdBirthDays = publicWidget.Widget.extend({
 //        </div>
 //        `
         })
-        this.el.querySelector('.s_allow_columns').innerHTML = `
+        birthDayEl.innerHTML = `
         <div class="row container mx-auto">
             ${data_lines}
         </div>
@@ -70,11 +87,7 @@ publicWidget.registry.SdBirthDays = publicWidget.Widget.extend({
     },
     async _getData(){
         // todo: It can be replaced by route rpc. Check how to tack effect of conditional view on snippet options.
-        return this._rpc({
-            model: "hr.employee",
-            method: "get_birth_dates",
-            args: [[]],
-        })
+        return this.rpc('/sd_snippets/snippet/birthdays')
         .then(data => JSON.parse(data))
         .then(data => data)
         .catch(er => false);

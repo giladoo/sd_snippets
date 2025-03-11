@@ -33,7 +33,7 @@ class SdSnippetsBirthDays(models.Model):
                       } for rec in records if rec.birthday and (rec.birthday.month, rec.birthday.day) in month_day
                      ])
         data = sorted(data, key=lambda x: (x['month'], x['day'],))
-
+        print(f'\n ======== Birthdays: {data}\n ')
         return json.dumps({'data': data})
 
 
