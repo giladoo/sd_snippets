@@ -21,7 +21,8 @@ class SdSnippetsBirthDays(models.Model):
         context = self.env.context
         month_day = []
         today = datetime.now(pytz.timezone(context.get('tz', 'Asia/Tehran')))
-        days = list([today + timedelta(days=rec - 1) for rec in range(4)])
+        # todo before and after can be set in settings.
+        days = list([today + timedelta(days=rec - 4) for rec in range(8)])
         month_day = list([(rec.month, rec.day) for rec in days])
         records = self.sudo().search([('birthday', '!=', False)], order='birthday desc')
 
@@ -33,7 +34,7 @@ class SdSnippetsBirthDays(models.Model):
                       } for rec in records if rec.birthday and (rec.birthday.month, rec.birthday.day) in month_day
                      ])
         data = sorted(data, key=lambda x: (x['month'], x['day'],))
-        print(f'\n ======== Birthdays: {data}\n ')
+        # print(f'\n ======== Birthdays: {data}\n ')
         return json.dumps({'data': data})
 
 
