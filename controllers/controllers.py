@@ -14,6 +14,7 @@ class Website(Home):
     @http.route('/sd_snippets/snippet/birthdays', type='json', auth='public', website=True)
     def get_employees_birthdays(self, model_name=None, search_domain=None):
         # domain = request.website.website_domain()
+        # request.env['hr.employee'].sudo().get_birth_dates_new()
         return request.env['hr.employee'].sudo().get_birth_dates()
 
     @http.route('/sd_snippets/snippet/comments', type='json', auth='user', website=True)

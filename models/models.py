@@ -24,7 +24,7 @@ class SdSnippetsComments(models.Model):
     # website = fields.Many2one('')
 
     def get_updates(self):
-        print(f'\n>>>>>>>>>>>>>>>>>>>>>>')
+        # print(f'\n>>>>>>>>>>>>>>>>>>>>>>')
         lang = self.env.context.get('lang', 'en_US')
         records = self.search([('rec_date', '<=', date.today()), ('published', '=', True)],
                               order='rec_date desc', limit=3)

@@ -7,8 +7,10 @@ import os, fnmatch
 import base64
 import pandas as pd
 import jdatetime
+from jdatetimext import j_start_end, jdatejs
 from datetime import date, datetime, timedelta
 import pytz
+from icecream import ic
 
 # #######################################################################################
 class SdSnippetsBirthDays(models.Model):
@@ -17,38 +19,50 @@ class SdSnippetsBirthDays(models.Model):
     months = [('01', 'فروردین'), ('02', 'اردیبهشت'), ('03', 'خرداد'), ('04', 'تیر'),
                               ('05', 'مرداد'), ('06', 'شهریور'), ('07', 'مهر'), ('08', 'آبان'),
                               ('09', 'آذر'), ('10', 'دی'), ('11', 'بهمن'), ('12', 'اسفند'), ]
-    def get_birth_dates(self):
-        context = self.env.context
-        month_day = []
-        today = datetime.now(pytz.timezone(context.get('tz', 'Asia/Tehran')))
-        # todo before and after can be set in settings.
-        days = list([today + timedelta(days=rec - 4) for rec in range(8)])
-        month_day = list([(rec.month, rec.day) for rec in days])
-        records = self.sudo().search([('birthday', '!=', False)], order='birthday desc')
 
-        data = list([{'id': rec.id,
-                      'name': rec.name,
-                      'month': self.birthdate_converter(rec.birthday, context.get('lang', 'en_US'))['month'],
-                      'day': self.birthdate_converter(rec.birthday, context.get('lang', 'en_US'))['day'],
-                      'birthday': self.birthdate_converter(rec.birthday, context.get('lang', 'en_US'))['date'],
-                      } for rec in records if rec.birthday and (rec.birthday.month, rec.birthday.day) in month_day
-                     ])
-        data = sorted(data, key=lambda x: (x['month'], x['day'],))
-        # print(f'\n ======== Birthdays: {data}\n ')
-        return json.dumps({'data': data})
+    def get_month_name_in_persian(self, month):
+        months = [
+            "فروردین", "اردیبهشت", "خرداد", "تیر",
+            "مرداد", "شهریور", "مهر", "آبان",
+            "آذر", "دی", "بهمن", "اسفند"
+        ]
+        return months[month - 1]
 
+    def find_it(self, data, rec, lang):
+        month = int(data['birthday'].month)
+        day = int(data['birthday'].day)
 
-    def birthdate_converter(self, date_time, lang):
-        if lang == 'fa_IR':
-            date_time = jdatetime.datetime.fromgregorian(datetime=date_time)
-            month_name = [rec for rec in self.months if rec[0] == date_time.strftime("%m")][0]
-            date_time = {'date': f'{month_name[1]} {date_time.strftime("%d")}',
-                         'month': date_time.month,
-                         'day': date_time.day,
-                         }
-        else:
-            date_time = {'date': date_time.strftime("%M %d"),
-                         'month': date_time.month,
-                         'day': date_time.day,
-                         }
-        return date_time
+        res = data.copy() if int(rec[1]) == month and int(rec[2]) == day else False
+        if res and lang == 'fa_IR':
+            res['month'] = self.get_month_name_in_persian(int(jdatejs(res['birthday'], "%m")))
+            res['day'] = jdatejs(res['birthday'], "%d")
+            # birthday must be updated on the last
+            res['birthday'] = jdatejs(res['birthday'], "%Y/%m/%d")
+
+        elif res:
+            res['month'] = res['birthday'].strftime("%B")
+            res['day'] = res['birthday'].strftime("%d")
+            res['birthday'] = res['birthday'].strftime("%Y-%m-%d")
+
+        return res
+
+    def birth_day_range(self, employees, the_day=datetime.now(), lang='en_US', date_range=10):
+        date_range = date_range // 2
+        first_day = the_day - timedelta(days=date_range)
+        last_day = the_day + timedelta(days=date_range)
+        days = [first_day + timedelta(days=r) for r in range(2 * date_range + 1)]
+        range_of_days = list([(rec.year, rec.month, rec.day) for rec in days])
+        find_in_range_of_days = [self.find_it(data, rec, lang) for rec in range_of_days for data in employees]
+        return list([rec for rec in find_in_range_of_days if rec])
+
+    def get_birth_dates(self, the_day=datetime.now(), short_range=10, long_range=40, ):
+        lang = self.env.context.get('lang', 'en_US')
+        the_day = datetime.now(pytz.timezone(self.env.context.get('tz', 'Asia/Tehran')))
+        # the_day = datetime(2025, 3, 23)
+        employees = self.sudo().search_read([('birthday', '!=', False)],['name', 'birthday'], order='birthday desc')
+
+        data = self.birth_day_range(employees, the_day, lang, short_range)
+        this_month = self.birth_day_range(employees, the_day, lang, long_range)
+
+        return json.dumps({'data': data, 'this_month': this_month})
+

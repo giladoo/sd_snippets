@@ -1,12 +1,13 @@
 /** @odoo-module **/
 import { session } from "@web/session";
 import publicWidget from "@web/legacy/js/public/public_widget";
+import { rpc } from "@web/core/network/rpc";
 
 publicWidget.registry.SdBirthDays = publicWidget.Widget.extend({
     selector: '.sd_snippets_birth_days',
     init: function () {
         this._super.apply(this, arguments);
-        this.rpc = this.bindService("rpc");
+//        this.rpc = this.bindService("rpc");
     },
 //    willStart(){
 //        const _super = this._super.bind(this);
@@ -47,10 +48,16 @@ publicWidget.registry.SdBirthDays = publicWidget.Widget.extend({
     },
     _loadData(data){
 //        console.log('sd_snippets_birth_days load:', data, )
-//               this.el.querySelector('.s_allow_columns').innerHTML = '';
-        let data_lines = ''
-        let birthDayEl = this.el.querySelector('.birthday_data')
+//               this.el.querySelector('.s_allow_columnss_allow_columns').innerHTML = '';
+        let data_lines = '';
+        let this_month_lines = ['', ''];
+        let birthDayEl = this.el.querySelector('.birthday_data');
+        console.log('birthDayThisMonth', this)
+        let birthDayThisMonth = this.el.querySelector('.birthday_this_month');
+        console.log('birthDayThisMonth', birthDayEl, birthDayThisMonth)
         birthDayEl.innerHTML = ''
+        birthDayThisMonth.innerHTML = ''
+
         data['data'].forEach(data_rec => {
 //                src="/employee/image?model=hr.employee.public&amp;id=${data_rec['id']}&amp;field=avatar_128"
         data_lines += `
@@ -61,36 +68,49 @@ publicWidget.registry.SdBirthDays = publicWidget.Widget.extend({
                 alt="Card image">
                 <div class="card-body">
                   <h5 class="card-title">${data_rec['name']}</h4>
-                  <p class="card-text"> ${data_rec['birthday']}</p>
+                  <p class="card-text"> ${data_rec['month']}  ${data_rec['day']}</p>
                 </div>
             </div>
-        `
-//        data_lines += `
-//        <div class="col bg-warning-light rounded-circle py-3 mx-1 text-center">
-//            <div class="img_div rounded  mx-auto my-2 p-1 "
-//                style="background-image: url(/employee/image?model=hr.employee.public&amp;id=${data_rec['id']}&amp;field=avatar_128)"></div>
-//            <div class="h6 mb-2">
-//                ${data_rec['name']}
-//            </div>
-//            <div class="">
-//                ${data_rec['birthday']}
-//            </div>
-//        </div>
-//        `
+        `;
+
         })
+        const this_month_len = data['this_month'].length;
+        data['this_month'].forEach((data_rec, index) => {
+            this_month_lines[index < this_month_len / 2 ? 0 : 1 ] += `
+                <div class="col row row-cols-auto smaller border-bottom1 my-1">
+                    <div class="col" style="min-width: 50px;">${data_rec.day}</div>
+                    <div class="col" style="min-width: 100px;">${data_rec.month}</div>
+                    <div class="col">${data_rec.name}</div>
+                </div>
+            `;
+        })
+
         birthDayEl.innerHTML = `
         <div class="row container mx-auto">
             ${data_lines}
+        </div>
+        `;
+        birthDayThisMonth.innerHTML = `
+        <div class=" container mx-auto">
+            <div class="row mx-2">
+                <div class="col-12 col-md-6 ps-2 ">
+                    ${this_month_lines[0]}
+                </div>
+                <div class="col-12 col-md-6 ps-2 ps-md-5">
+                    ${this_month_lines[1]}
+                </div>
+            </div>
         </div>
         `;
 
     },
     async _getData(){
         // todo: It can be replaced by route rpc. Check how to tack effect of conditional view on snippet options.
-        return this.rpc('/sd_snippets/snippet/birthdays')
-        .then(data => JSON.parse(data))
-        .then(data => data)
-        .catch(er => false);
+        let birthdays = await rpc('/sd_snippets/snippet/birthdays')
+        birthdays = JSON.parse(birthdays)
+        console.log('birthdays:', birthdays)
+        return birthdays
+
     },
 });
 
