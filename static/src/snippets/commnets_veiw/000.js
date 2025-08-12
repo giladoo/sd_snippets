@@ -4,7 +4,7 @@ import { session } from "@web/session";
 import publicWidget from "@web/legacy/js/public/public_widget";
 import { rpc } from "@web/core/network/rpc";
 
-publicWidget.registry.SdComments = publicWidget.Widget.extend({
+publicWidget.registry.SdCommentsInternalNews = publicWidget.Widget.extend({
     selector: '.sd_snippets_comments_views',
         events: {
         'click .comment_view_list_item': '_onListClick',
@@ -78,4 +78,4 @@ publicWidget.registry.SdComments = publicWidget.Widget.extend({
     },
 });
 
-export default publicWidget.registry.SdComments;
+export default publicWidget.registry.SdCommentsInternalNews;
