@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+         <data>
+<record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="90"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/app[@name='website']" position="inside">
+                    <block title="Custom Snippets" name="custom_snippets">
+                        <setting id="custom_snippets_setting" title="Custom Snippets" string="Custom Snippets">
+                            <div class="content-group" name="custom_snippets_setting">
+                                <div class="d-flex">
+                                    <label for="limit_comments" class="o_light_label"/>
+                                    <field name="limit_comments" class="ml16"/>
+                                </div>
+                                <div class="d-flex">
+                                    <label for="slide_timer" class="o_light_label"/>
+                                    <field name="slide_timer" class="ml16"/>
+                                    <label for="slide_timer" string="Seconds" class="o_light_label"/>
+                                </div>
+                                <div class="d-flex">
+
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                </xpath>
+            </field>
+        </record>
+
+<!--        <record model="ir.actions.act_window" id="sd_payaneh_nafti_settings_action">-->
+<!--            <field name="name">Settings</field>-->
+<!--            <field name="type">ir.actions.act_window</field>-->
+<!--            <field name="res_model">res.config.settings</field>-->
+<!--            <field name="view_mode">form</field>-->
+<!--            <field name="target">inline</field>-->
+<!--            <field name="context">{'module': 'sd_payaneh_nafti', 'bin size': False}</field>-->
+<!--        </record>-->
+
+<!--        <menuitem name="Parameters"-->
+<!--                  id="sd_payaneh_nafti.parameters_settings"-->
+<!--                  sequence="1000"-->
+<!--                  parent="settings_menu"-->
+<!--                  groups="sd_payaneh_nafti.group_sd_payaneh_nafti_admins"-->
+<!--                  action="sd_payaneh_nafti_settings_action"/>-->
+
+    </data>
+</odoo>

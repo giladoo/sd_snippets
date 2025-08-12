@@ -14,6 +14,7 @@ publicWidget.registry.SdComments = publicWidget.Widget.extend({
     init: function () {
         this.state = {
             data: [],
+            intervalTime: 6000,
         }
         this._super.apply(this, arguments);
     },
@@ -25,7 +26,6 @@ publicWidget.registry.SdComments = publicWidget.Widget.extend({
         // todo: This way the conditional view of the snippet is not working.
         this.current = 0;
         this.slideInterval;
-        this.intervalTime = 6000;
         this.slides = []
 //        this.el.querySelector('.comment_data').innerHTML = '';
         this._getComments()
@@ -82,7 +82,7 @@ publicWidget.registry.SdComments = publicWidget.Widget.extend({
         });
     },
     startAutoSlide() {
-        this.slideInterval = setInterval(() => this.nextSlide(), this.intervalTime);
+        this.slideInterval = setInterval(() => this.nextSlide(), this.state.intervalTime);
     },
     stopAutoSlide() {
         clearInterval(this.slideInterval);
@@ -92,7 +92,7 @@ publicWidget.registry.SdComments = publicWidget.Widget.extend({
         let comment_line = ''
         let comment_lines = ''
         let comment_slider = ''
-        this.state.data.data.forEach(comment => {
+        this.state.data.forEach(comment => {
             comment_line = `
             <div class="bg-white">
                 <div class="  p-0 p-md-0 my-2 ">
@@ -113,10 +113,13 @@ publicWidget.registry.SdComments = publicWidget.Widget.extend({
     },
     async _getComments(){
         // todo: It can be replaced by route rpc. Check how to tack effect of conditional view on snippet options.
-        let comments = await rpc('/sd_snippets/snippet/comments/10')
+        let comments = await rpc('/sd_snippets/snippet/comments')
         comments = JSON.parse(JSON.stringify(comments))
         comments = JSON.parse(comments)
-        this.state.data = comments
+        console.log(comments)
+        this.state.data = comments['data']
+        this.state.intervalTime = comments['intervalTime']
+        console.log('this.state', this.state)
 
         return comments
     },

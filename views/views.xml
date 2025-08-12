@@ -5,6 +5,7 @@
         <field name="model">sd_snippets.comments</field>
         <field name="arch" type="xml">
             <list>
+                <field name="sequence" widget="handle"/>
                 <field name="title"/>
                 <field name="rec_date"/>
 <!--                <field name="content"/>-->
@@ -37,11 +38,30 @@
                             <field name="rec_date"/>
 
                         </group>
-                        <field name="content"/>
+                    </group>
+                    <group>
+                    <field name="content" widget="html"/>
+
                     </group>
                 </sheet>
+                <chatter/>
             </form>
 
+        </field>
+    </record>
+
+    <record id="website_comments_search" model="ir.ui.view">
+        <field name="name">Comments</field>
+        <field name="model">sd_snippets.comments</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="title"/>
+                <field name="rec_date"/>
+                <field name="content"/>
+                <field name="published"/>
+                <filter name="published_items" string="Published" domain="[('published', '=', True)]"/>
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+            </search>
         </field>
     </record>
 
@@ -49,6 +69,7 @@
             <field name="name">Comments</field>
             <field name="res_model">sd_snippets.comments</field>
             <field name="view_mode">list,form</field>
+            <field name="context">{'search_default_published_items': 1}</field>
     </record>
 
         <menuitem name="Internal News"

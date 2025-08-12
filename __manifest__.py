@@ -29,6 +29,7 @@
     'data': [
         'security/ir.model.access.csv',
 
+        'views/settings.xml',
         'views/views.xml',
         'views/snippets/birth_days.xml',
         'views/snippets/comments_slides.xml',

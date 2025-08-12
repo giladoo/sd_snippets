@@ -11,7 +11,7 @@
 }
 
 .slide.active {
-  transform: translateY(0%);
+    transform: translateY(0%);
     transition: transform 1.2s ease-in-out;
 
   opacity: 1;
