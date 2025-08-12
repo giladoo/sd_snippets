@@ -22,7 +22,7 @@ class SdSnippetsComments(models.Model):
     active = fields.Boolean(default=True, tracking=True)
     rec_date = fields.Date(required=True, default=lambda self: datetime.now(pytz.timezone(self.env.context.get('tz', 'Asia/Tehran'))))
     title = fields.Char(required=True, tracking=True)
-    content = fields.Html(required=True, tracking=True)
+    content = fields.Html(required=False)
     published = fields.Boolean(default=False, tracking=True)
     # website = fields.Many2one('')
 

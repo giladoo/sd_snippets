@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="comments_view_section" name="Comments viewer">
+        <section class=" sd_snippets_comments_views bg-white " data-vcss="004">
+            <div class=" comments_text_viewer_container ">
+            <div class="row row-cols-auto mx-2">
+                <div class="col-2 p-2 ">
+                    <div class="comments_text_viewer_list">List</div>
+                </div>
+                <div class="col-8 p-2 border-start">
+                    <div class="comments_text_viewer_content">Content</div>
+                </div>
+            </div>
+
+<!--                <div class="row row-cols-auto">-->
+
+<!--                    <div class="col ">-->
+<!--                        <div class="col-12 comment_selector_keys fa fa-caret-up cursor-pointer"></div>-->
+<!--                        <div class="col-12 comment_selector_keys fa fa-caret-down cursor-pointer"></div>-->
+<!--                    </div>-->
+<!--                    <div id="text-viewr" class="col-11 comments_text_viewer text-viewer"> </div>-->
+<!--                </div>-->
+
+            </div>
+        </section>
+    </template>
+
+</odoo>

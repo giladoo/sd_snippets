@@ -25,7 +25,6 @@ publicWidget.registry.SdComments = publicWidget.Widget.extend({
 //        this.el.querySelector('.comment_data').innerHTML = '';
         this._getComments()
             .then(data => {
-                data = JSON.parse(data)
                 if(data.data){
                     this._loadComments(data)
                     this.el.querySelector('.comment_header').classList.remove('d-none')
@@ -104,7 +103,6 @@ publicWidget.registry.SdComments = publicWidget.Widget.extend({
         </div>
         `
         comment_lines += comment_line
-
         })
         this.el.querySelector('.comment_data').innerHTML = `
         <div class="bg-white">
@@ -117,7 +115,7 @@ publicWidget.registry.SdComments = publicWidget.Widget.extend({
     async _getComments(){
         // todo: It can be replaced by route rpc. Check how to tack effect of conditional view on snippet options.
         let comments = await rpc('/sd_snippets/snippet/comments')
-        comments = JSON.parse(JSON.stringify(comments))
+        comments = JSON.parse(JSON.parse(JSON.stringify(comments)))
         return comments
     },
 });

@@ -33,6 +33,7 @@
         'views/views.xml',
         'views/snippets/birth_days.xml',
         'views/snippets/comments_slides.xml',
+        'views/snippets/comments_view.xml',
         'views/snippets/comments.xml',
         'views/snippets/snippets.xml',
 
