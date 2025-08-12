@@ -2,7 +2,7 @@
 <odoo>
 
     <template id="comments_slide_section" name="Comments slider">
-        <section class=" sd_snippets_comments_slides bg-white border" data-vcss="003">
+        <section class=" sd_snippets_comments_slides bg-white " data-vcss="003">
             <div class="container comments_text_slider_container  border rounded-3">
                 <div class="row row-cols-auto">
                     <div class="col ">
