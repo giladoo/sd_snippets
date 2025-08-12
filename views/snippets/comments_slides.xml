@@ -5,6 +5,7 @@
         <section class=" sd_snippets_comments_slides bg-white " data-vcss="003">
             <div class="container comments_text_slider_container  border rounded-3">
                 <div class="row row-cols-auto">
+
                     <div class="col ">
                         <div class="col-12 comment_selector_keys fa fa-caret-up cursor-pointer"></div>
                         <div class="col-12 comment_selector_keys fa fa-caret-down cursor-pointer"></div>

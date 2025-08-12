@@ -23,11 +23,11 @@ class SdSnippetsComments(models.Model):
     published = fields.Boolean(default=False)
     # website = fields.Many2one('')
 
-    def get_updates(self):
+    def get_comments_updates(self, limit_comments=3):
         # print(f'\n>>>>>>>>>>>>>>>>>>>>>>')
         lang = self.env.context.get('lang', 'en_US')
         records = self.search([('rec_date', '<=', date.today()), ('published', '=', True)],
-                              order='rec_date desc', limit=3)
+                              order='rec_date desc', limit=limit_comments)
         data = list([{'id': rec.id,
                       'title': rec.title,
                       'date': self.date_converter(rec.rec_date, lang),

@@ -18,10 +18,11 @@ class Website(Home):
         # request.env['hr.employee'].sudo().get_birth_dates_new()
         return request.env['hr.employee'].sudo().get_birth_dates()
 
-    @http.route('/sd_snippets/snippet/comments', type='json', auth='user', website=True)
-    def get_updates(self, model_name=None, search_domain=None):
+    @http.route('/sd_snippets/snippet/comments/<int:limit_comments>', type='json', auth='user', website=True)
+    def get_updates(self, model_name=None, search_domain=None, limit_comments=3):
         # domain = request.website.website_domain()
-        return request.env['sd_snippets.comments'].sudo().get_updates()
+        # TODO: limit_comments can be set in comments settings
+        return request.env['sd_snippets.comments'].sudo().get_comments_updates(limit_comments)
 
     @http.route('/sd_snippets/snippet/image/<int:employee_id>', type='http', auth='public', website=True)
     def get_employee_avatar(self, employee_id, **kw):

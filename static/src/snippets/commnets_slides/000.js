@@ -22,10 +22,7 @@ publicWidget.registry.SdComments = publicWidget.Widget.extend({
      */
     start() {
         let self = this;
-//        console.log('sd_snippets_comments', this.el, this.el.querySelector('.s_allow_columns'))
         // todo: This way the conditional view of the snippet is not working.
-        //  I need to change it based on conditional view.
-        //  I there is no user_id check, the browser will show an warning of session.
         this.current = 0;
         this.slideInterval;
         this.intervalTime = 6000;
@@ -33,8 +30,7 @@ publicWidget.registry.SdComments = publicWidget.Widget.extend({
 //        this.el.querySelector('.comment_data').innerHTML = '';
         this._getComments()
             .then(data => {
-                data = JSON.parse(data)
-                this.state.data = data
+
                 if(data.data){
                     this._loadComments(data)
 //                    this.el.querySelector('.comment_header').classList.remove('d-none')
@@ -53,14 +49,11 @@ publicWidget.registry.SdComments = publicWidget.Widget.extend({
                     this.slider.addEventListener("mouseenter", () => this.stopAutoSlide());
                     this.startAutoSlide()
             })
-
-
-        console.log('this.state:', this.state)
-
         return this._super(...arguments);
 
     },
     onCommentSelectorClick(ev){
+//    this._loadComments(this._getComments())
         if (ev.target.classList.contains('fa-caret-up')){
             this.nextSlide()
         } else if (ev.target.classList.contains('fa-caret-down')){
@@ -76,7 +69,6 @@ publicWidget.registry.SdComments = publicWidget.Widget.extend({
         this.current = (this.current + 1) % this.slides.length;
         this.showSlide(this.current);
     },
-
     prevSlide() {
         this.current = (this.current - 1 + this.slides.length) % this.slides.length;
         this.showSlide(this.current);
@@ -92,19 +84,14 @@ publicWidget.registry.SdComments = publicWidget.Widget.extend({
     startAutoSlide() {
         this.slideInterval = setInterval(() => this.nextSlide(), this.intervalTime);
     },
-
     stopAutoSlide() {
         clearInterval(this.slideInterval);
     },
-
     _loadComments(comments){
-//        console.log('_loadComments:', comments, )
-//               this.el.querySelector('.s_allow_columns').innerHTML = '';
+
         let comment_line = ''
         let comment_lines = ''
         let comment_slider = ''
-//        comments['data'].forEach(comment => {
-        console.log('data', this.state.data)
         this.state.data.data.forEach(comment => {
             comment_line = `
             <div class="bg-white">
@@ -123,14 +110,14 @@ publicWidget.registry.SdComments = publicWidget.Widget.extend({
         this.el.querySelector('.comments_text_slider').innerHTML = `
             ${comment_slider}
         `;
-
-
-
     },
     async _getComments(){
         // todo: It can be replaced by route rpc. Check how to tack effect of conditional view on snippet options.
-        let comments = await rpc('/sd_snippets/snippet/comments')
+        let comments = await rpc('/sd_snippets/snippet/comments/10')
         comments = JSON.parse(JSON.stringify(comments))
+        comments = JSON.parse(comments)
+        this.state.data = comments
+
         return comments
     },
 });
