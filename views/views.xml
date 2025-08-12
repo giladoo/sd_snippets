@@ -37,8 +37,8 @@
                             <field name="rec_date"/>
 
                         </group>
+                        <field name="content"/>
                     </group>
-                            <field name="content"/>
                 </sheet>
             </form>
 

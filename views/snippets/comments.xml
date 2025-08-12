@@ -3,12 +3,13 @@
 
     <template id="comments_section" name="Comments">
         <section class="pt40 pb40 sd_snippets_comments bg-white" data-vcss="001">
-            <div  class="text-center comment_header d-none h3">
+            <div  class="text-center comment_header d-none1  border h3">
                 Internal News
             </div>
-            <div class="container s_allow_columns comment_data d-none ">
+            <div class="container s_allow_columns comment_data border border-info d-none">
 <!--                <div class="h3">Comments would be here</div>-->
             </div>
+
         </section>
     </template>
 

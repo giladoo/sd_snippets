@@ -5,6 +5,9 @@
     <xpath expr="//t[@id='default_snippets']" position="after">
 <!--                <div class="o_panel_header">SD Structure</div>-->
             <snippets id="sd_snippets_elements" string="SD Snippets">
+                    <t t-snippet="sd_snippets.comments_slide_section" t-thumbnail="/sd_snippets/static/src/img/snippets_thumbs/s_banner.svg">
+                        <keywords>comments, news</keywords>
+                    </t>
                     <t t-snippet="sd_snippets.comments_section" t-thumbnail="/sd_snippets/static/src/img/snippets_thumbs/s_banner.svg">
                         <keywords>comments, news</keywords>
                     </t>

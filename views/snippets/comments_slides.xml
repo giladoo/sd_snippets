@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="comments_slide_section" name="Comments slider">
+        <section class=" sd_snippets_comments_slides bg-white border" data-vcss="003">
+            <div class="container comments_text_slider_container  border rounded-3">
+                <div class="row row-cols-auto">
+                    <div class="col ">
+                        <div class="col-12 comment_selector_keys fa fa-caret-up cursor-pointer"></div>
+                        <div class="col-12 comment_selector_keys fa fa-caret-down cursor-pointer"></div>
+                    </div>
+                    <div id="text-slider" class="col-11 comments_text_slider text-slider"> </div>
+                </div>
+
+            </div>
+        </section>
+    </template>
+
+</odoo>

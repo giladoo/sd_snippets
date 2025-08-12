@@ -31,13 +31,15 @@
 
         'views/views.xml',
         'views/snippets/birth_days.xml',
+        'views/snippets/comments_slides.xml',
         'views/snippets/comments.xml',
         'views/snippets/snippets.xml',
 
     ],
     'assets': {
         'web.assets_frontend':[
-            'sd_snippets/static/src/snippets/**/*.js'
+            'sd_snippets/static/src/snippets/**/*.js',
+            'sd_snippets/static/src/snippets/**/*.css',
         ],
         'web.report_assets_common': [
             # 'hr_extend_ipac/static/src/css/report_styles.css',

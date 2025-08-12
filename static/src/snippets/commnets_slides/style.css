@@ -1,0 +1,18 @@
+.text-slider {
+  position: relative;
+  height: 55px; /* Adjust as needed */
+  overflow: hidden;
+}
+.slide {
+  position: absolute;
+  width: 100%;
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.slide.active {
+  transform: translateY(0%);
+    transition: transform 1.2s ease-in-out;
+
+  opacity: 1;
+}
