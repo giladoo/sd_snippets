@@ -3,6 +3,7 @@
 import { session } from "@web/session";
 import publicWidget from "@web/legacy/js/public/public_widget";
 import { rpc } from "@web/core/network/rpc";
+import { _t } from "@web/core/l10n/translation";
 
 publicWidget.registry.SdCommentsInternalNews = publicWidget.Widget.extend({
     selector: '.sd_snippets_comments_views',
@@ -13,7 +14,7 @@ publicWidget.registry.SdCommentsInternalNews = publicWidget.Widget.extend({
 
     init: function () {
         this.state = {
-            data: [],
+            data: [{id: 0, title: 'List'}],
             intervalTime: 6000,
         }
         this._super.apply(this, arguments);
@@ -27,14 +28,15 @@ publicWidget.registry.SdCommentsInternalNews = publicWidget.Widget.extend({
         this.current = 0;
         this.slideInterval;
         this.slides = []
+        this.el.querySelector('.comments_text_viewer_header').innerHTML = _t('Internal News')
         this.viewerList = this.el.querySelector('.comments_text_viewer_list')
         this.viewerContent = this.el.querySelector('.comments_text_viewer_content')
-
+//        this.viewerList.innerHTML = ''
+        this.viewerContent.innerHTML = ''
         this._getComments()
             .then(data => {
-                if(data.data){
+                if(data.data.length){
                     this._loadList(data)
-                    console.log('ssss', this.state.data[0])
                     this._onListClick('', this.state.data[0]['id'])
                 }
             })
@@ -58,7 +60,7 @@ publicWidget.registry.SdCommentsInternalNews = publicWidget.Widget.extend({
         let comment_lines = ''
         this.state.data.forEach(comment => {
             comment_lines += `
-                <div id="${comment['id']}" class="comment_view_list_item  btn btn-link ">${comment['title']}</div></br>
+                <div id="${comment['id']}" class="comment_view_list_item  btn btn-link smaller ">${comment['title']}</div></br>
             `
             });
         this.viewerList.innerHTML = comment_lines
@@ -66,6 +68,8 @@ publicWidget.registry.SdCommentsInternalNews = publicWidget.Widget.extend({
 
     async _getComments(){
         // todo: It can be replaced by route rpc. Check how to tack effect of conditional view on snippet options.
+        console.log('this', this)
+
         let comments = await rpc('/sd_snippets/snippet/comments')
         comments = JSON.parse(JSON.stringify(comments))
         comments = JSON.parse(comments)

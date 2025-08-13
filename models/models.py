@@ -31,7 +31,7 @@ class SdSnippetsComments(models.Model):
         slide_timer = int(float(self.env['ir.config_parameter'].sudo().get_param('sd_snippets.slide_timer')) * 1000)
 
         lang = self.env.context.get('lang', 'en_US')
-        records = self.search([('rec_date', '<=', date.today()), ('published', '=', True)],
+        records = self.sudo().search([('rec_date', '<=', date.today()), ('published', '=', True)],
                               order='sequence', limit=limit_comments)
         data = list([{'id': rec.id,
                       'title': rec.title,

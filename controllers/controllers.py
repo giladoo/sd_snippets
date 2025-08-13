@@ -18,7 +18,7 @@ class Website(Home):
         # request.env['hr.employee'].sudo().get_birth_dates_new()
         return request.env['hr.employee'].sudo().get_birth_dates()
 
-    @http.route('/sd_snippets/snippet/comments/', type='json', auth='user', website=True)
+    @http.route('/sd_snippets/snippet/comments/', type='json', auth='public', website=True)
     def get_updates(self, model_name=None, search_domain=None, ):
         # domain = request.website.website_domain()
         # TODO: limit_comments can be set in comments settings
