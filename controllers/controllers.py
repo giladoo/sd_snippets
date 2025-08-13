@@ -29,8 +29,8 @@ class Website(Home):
         employee = request.env['hr.employee'].sudo().search([('id', '=', employee_id)])
         avatar_128 = employee.avatar_128
         # ic(employee, len(employee.image_256))
-        if len(avatar_128) < 500:
-            ic(employee, avatar_128)
+        # if len(avatar_128) < 500:
+        #     ic(employee, avatar_128)
 
 
 

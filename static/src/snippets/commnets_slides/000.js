@@ -61,7 +61,7 @@ publicWidget.registry.SdComments = publicWidget.Widget.extend({
         }
         },
     onCommentClick(ev){
-        console.log('click', ev)
+//        console.log('click', ev)
 
     },
     nextSlide() {
@@ -116,10 +116,10 @@ publicWidget.registry.SdComments = publicWidget.Widget.extend({
         let comments = await rpc('/sd_snippets/snippet/comments')
         comments = JSON.parse(JSON.stringify(comments))
         comments = JSON.parse(comments)
-        console.log(comments)
+//        console.log(comments)
         this.state.data = comments['data']
         this.state.intervalTime = comments['intervalTime']
-        console.log('this.state', this.state)
+//        console.log('this.state', this.state)
 
         return comments
     },

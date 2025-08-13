@@ -52,7 +52,7 @@ publicWidget.registry.SdComments = publicWidget.Widget.extend({
     },
 
     nextSlide() {
-    console.log('slides:', this)
+//    console.log('slides:', this)
     this.slides = document.querySelectorAll('.slide')
 
       this.current = (this.current + 1) % this.slides.length;

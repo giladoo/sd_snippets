@@ -71,7 +71,7 @@ class SdSnippetsBirthDays(models.Model):
         # the_day = datetime(2025, 3, 23)
         employees = self.sudo().search_read([('birthday', '!=', False)],['name', 'birthday', 'avatar_128', 'work_location_id'], order='birthday desc')
         employees_pd = pd.DataFrame(employees)
-        print('\n.............\n', employees_pd)
+        # print('\n.............\n', employees_pd)
         data = self.birth_day_range(employees, the_day, lang, short_range)
         this_month = self.birth_day_range(employees, the_day, lang, long_range)
 

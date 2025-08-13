@@ -50,7 +50,7 @@ publicWidget.registry.SdCommentsInternalNews = publicWidget.Widget.extend({
     _onListClick(ev, commentId=0){
         commentId = commentId ? commentId : ev.target.id;
         let selectedComment = this.state.data.filter(r => r.id == commentId)[0]
-        console.log('click', selectedComment, )
+//        console.log('click', selectedComment, )
         this.viewerContent.innerHTML = `
                         <div  class=" m-4 h3 text-center ">${selectedComment['title']}</div>
                         <div  class=" mb-2 ">${selectedComment['content']}</div>
@@ -70,15 +70,15 @@ publicWidget.registry.SdCommentsInternalNews = publicWidget.Widget.extend({
 
     async _getComments(){
         // todo: It can be replaced by route rpc. Check how to tack effect of conditional view on snippet options.
-        console.log('this', this)
+//        console.log('this', this)
 
         let comments = await rpc('/sd_snippets/snippet/comments')
         comments = JSON.parse(JSON.stringify(comments))
         comments = JSON.parse(comments)
-        console.log(comments)
+//        console.log(comments)
         this.state.data = comments['data']
         this.state.intervalTime = comments['intervalTime']
-        console.log('this.state', this.state)
+//        console.log('this.state', this.state)
 
         return comments
     },
