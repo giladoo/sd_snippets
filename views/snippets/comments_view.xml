@@ -4,7 +4,7 @@
     <template id="comments_view_section" name="Comments viewer">
         <section class=" sd_snippets_comments_views bg-white " data-vcss="004">
             <div class=" comments_text_viewer_container ">
-                <div class=" h3 comments_text_viewer_header m-2 " ></div>
+                <div class=" h3 comments_text_viewer_header m-2 " t-translation="true" >Internal News</div>
 
             <div class="row row-cols-auto mx-2">
                 <div class="col-2 p-2  border-top border-end rounded-top-3 rounded-start-0  ">

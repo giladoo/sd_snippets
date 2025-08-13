@@ -28,7 +28,9 @@ publicWidget.registry.SdCommentsInternalNews = publicWidget.Widget.extend({
         this.current = 0;
         this.slideInterval;
         this.slides = []
-        this.el.querySelector('.comments_text_viewer_header').innerHTML = _t('Internal News')
+//        let title = _t('Internal News')
+//        console.log('title', title)
+//        this.el.querySelector('.comments_text_viewer_header').innerHTML = title
         this.viewerList = this.el.querySelector('.comments_text_viewer_list')
         this.viewerContent = this.el.querySelector('.comments_text_viewer_content')
 //        this.viewerList.innerHTML = ''

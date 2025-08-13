@@ -1,0 +1,330 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sd_snippets
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-13 13:12+0000\n"
+"PO-Revision-Date: 2025-08-13 16:45+0330\n"
+"Last-Translator: Arash Homayounfar <homayounfar@msn.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fa\n"
+"X-Generator: Poedit 2.2\n"
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__active
+msgid "Active"
+msgstr "فعال"
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: sd_snippets
+#: model_terms:ir.ui.view,arch_db:sd_snippets.website_comments_search
+msgid "Archived"
+msgstr "بایگانی شده"
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.actions.act_window,name:sd_snippets.website_comments
+msgid "Comments"
+msgstr "اخبار"
+
+#. module: sd_snippets
+#: model:ir.model,name:sd_snippets.model_res_config_settings
+msgid "Config Settings"
+msgstr "تنظیمات پیکربندی"
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__content
+#: model_terms:ir.ui.view,arch_db:sd_snippets.comments_view_section
+#: model_terms:ir.ui.view,arch_db:sd_snippets.website_comments_form
+msgid "Content"
+msgstr "محتوا"
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: sd_snippets
+#: model_terms:ir.ui.view,arch_db:sd_snippets.res_config_settings_view_form
+msgid "Custom Snippets"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model,name:sd_snippets.model_hr_employee
+msgid "Employee"
+msgstr "کارمند"
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,help:sd_snippets.field_sd_snippets_comments__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: sd_snippets
+#: model_terms:ir.ui.view,arch_db:sd_snippets.birth_day_section
+msgid "Happy birth day"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__id
+msgid "ID"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,help:sd_snippets.field_sd_snippets_comments__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,help:sd_snippets.field_sd_snippets_comments__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,help:sd_snippets.field_sd_snippets_comments__message_has_error
+#: model:ir.model.fields,help:sd_snippets.field_sd_snippets_comments__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: sd_snippets
+#. odoo-javascript
+#: code:addons/sd_snippets/static/src/snippets/commnets_veiw/000.js:0
+#: model:ir.ui.menu,name:sd_snippets.comments
+#: model_terms:ir.ui.view,arch_db:sd_snippets.comments_section
+msgid "Internal News"
+msgstr "اخبار داخلی"
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_res_config_settings__limit_comments
+msgid "Limit Comments"
+msgstr ""
+
+#. module: sd_snippets
+#: model_terms:ir.ui.view,arch_db:sd_snippets.comments_view_section
+msgid "List"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,help:sd_snippets.field_sd_snippets_comments__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,help:sd_snippets.field_sd_snippets_comments__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__published
+#: model_terms:ir.ui.view,arch_db:sd_snippets.website_comments_form
+#: model_terms:ir.ui.view,arch_db:sd_snippets.website_comments_search
+msgid "Published"
+msgstr "منتشر شده"
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__rec_date
+msgid "Rec Date"
+msgstr "تاریخ انتشار"
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: sd_snippets
+#: model_terms:ir.ui.view,arch_db:sd_snippets.my_snippets
+msgid "SD Snippets"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: sd_snippets
+#: model_terms:ir.ui.view,arch_db:sd_snippets.res_config_settings_view_form
+msgid "Seconds"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_res_config_settings__slide_timer
+msgid "Slide Timer"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,help:sd_snippets.field_sd_snippets_comments__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__title
+msgid "Title"
+msgstr "موضوع"
+
+#. module: sd_snippets
+#: model:ir.model.fields,help:sd_snippets.field_sd_snippets_comments__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,field_description:sd_snippets.field_sd_snippets_comments__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model.fields,help:sd_snippets.field_sd_snippets_comments__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: sd_snippets
+#: model_terms:ir.ui.view,arch_db:sd_snippets.my_snippets
+msgid "birth, day"
+msgstr ""
+
+#. module: sd_snippets
+#: model_terms:ir.ui.view,arch_db:sd_snippets.my_snippets
+msgid "comments, news"
+msgstr ""
+
+#. module: sd_snippets
+#: model:ir.model,name:sd_snippets.model_sd_snippets_comments
+msgid "sd_snippets.comments"
+msgstr ""
